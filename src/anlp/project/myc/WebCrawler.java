@@ -44,7 +44,7 @@ public class WebCrawler {
 
 	public void getPageLinks(String path, String url, int depth) throws IOException, URISyntaxException {
 		
-		BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME + path + "-crawler.txt", true));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME + path + "-crawler", true));
 
 		if ((!links.contains(url) && (depth < MAX_DEPTH))) {
 			

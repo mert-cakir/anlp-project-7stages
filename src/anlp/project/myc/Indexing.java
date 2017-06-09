@@ -1,5 +1,11 @@
 package anlp.project.myc;
 
+/**
+ * @author ${Mert Yilmaz CAKIR}
+ *
+ * ${Indexing}
+ */
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -28,20 +34,33 @@ public class Indexing {
 		String domain = uri.getHost();
 		return domain;
 	}
+	
+	public String getQueryName(String url) throws URISyntaxException {
+		URI uri = new URI(url);
+		String domain = uri.getQuery();
+		if (uri.getQuery() != null) {
+			domain = uri.getQuery();
+		} else {
+			domain = "";
+		}
+		return domain;
+	}
 
 	public String getFileName(String path) throws URISyntaxException {
-		return FILENAME + getDomainName(path) + "-crawler.txt";
+		return FILENAME + getDomainName(path) + "-crawler";
 	}
 
 
 	public void textIndexing(String path) throws IOException, URISyntaxException{
 
-		new File(FILENAME + getDomainName(getDomainName(path)) + "/" + getDomainName(getDomainName(path))).mkdir();
-
 		try (BufferedReader br = new BufferedReader(new FileReader(getFileName(path)))) {
 
 			String line;
 			while ((line = br.readLine()) != null) {
+
+				BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME  + 
+						getDomainName(line) + getQueryName(line) + "-index", true));
+				System.out.println(line+"\nCreating indexing files...");
 
 				int sumChars = 0;
 				Map<String, Integer> map = new HashMap<String, Integer>();
@@ -63,7 +82,6 @@ public class Indexing {
 							} else {
 								map.put(t, 1);
 							}
-
 						}
 					}
 				}
@@ -79,8 +97,9 @@ public class Indexing {
 				});
 				for(int i = 0; i < map.size(); i++){
 					System.out.println(entries.get(entries.size() - i - 1).getKey()+" "+entries.get(entries.size() - i - 1).getValue());
+					writer.write(entries.get(entries.size() - i - 1).getKey()+" "+entries.get(entries.size() - i - 1).getValue() + "\n");
 				}
-
+				writer.close();
 			}
 		} catch (Exception e) {
 			System.err.println("For '" + path + "': " + e.getMessage());

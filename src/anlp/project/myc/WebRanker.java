@@ -1,54 +1,39 @@
 package anlp.project.myc;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+/**
+ * @author ${Mert Yilmaz CAKIR}
+ *
+ * ${Ranking}
+ */
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 public class WebRanker {
-	
-	public static void main(String[] args) {
 
-		WebRanker obj = new WebRanker();
-		System.out.println("Ranking : " + obj.getUrlRanking("mkyong.com"));
+	int i,count = 0;
 
+	public WebRanker() {
 	}
 
-	public int getUrlRanking(String domain) {
+	public int getFindString(File fileEntry, String str){
 
-		int result = 0;
+		try (BufferedReader br = new BufferedReader(new FileReader(fileEntry))) {
 
-		String url = "http://data.alexa.com/data?cli=10&url=" + domain;
-
-		try {
-
-			URLConnection conn = new URL(url).openConnection();
-			InputStream is = conn.getInputStream();
-
-			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
-					.newDocumentBuilder();
-			Document doc = dBuilder.parse(is);
-
-			Element element = doc.getDocumentElement();
-
-			NodeList nodeList = element.getElementsByTagName("POPULARITY");
-			if (nodeList.getLength() > 0) {
-				Element elementAttribute = (Element) nodeList.item(0);
-				String ranking = elementAttribute.getAttribute("TEXT");
-				if(!"".equals(ranking)){
-					result = Integer.valueOf(ranking);
+			Boolean found;
+			String line;
+			while ((line = br.readLine()) != null) {
+				found = line.contains(str);
+				if (found == true) {
+					String subStr = line.substring(line.indexOf(" ") + 1);
+					i = Integer.parseInt(subStr);
+					count += i;
 				}
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
 		}
-
-		return result;
+		return count;
 	}
-
 }

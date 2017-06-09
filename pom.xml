@@ -5,6 +5,13 @@
 	<artifactId>AnlpProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<repositories>
+		<repository>
+			<id>hrzafer-repo</id>
+			<url>https://github.com/hrzafer/mvn-repo/raw/master/releases</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.jsoup</groupId>
@@ -16,6 +23,11 @@
 			<groupId>org.apache.jena</groupId>
 			<artifactId>jena-arq</artifactId>
 			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hrzafer</groupId>
+			<artifactId>resha-turkish-stemmer</artifactId>
+			<version>1.2.1</version>
 		</dependency>
 
 	</dependencies>

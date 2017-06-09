@@ -31,7 +31,7 @@ public class TextProcessing {
 	}
 	
 	public String getFileName(String path) throws URISyntaxException {
-	    return FILENAME + getDomainName(path) + "-crawler.txt";
+	    return FILENAME + getDomainName(path) + "-crawler";
 	}
 	
 	public String getDomainName(String url) throws URISyntaxException {
@@ -42,14 +42,12 @@ public class TextProcessing {
 	
 	private void getTextProcessing(String path) throws Exception{
 		
-		new File(FILENAME + getDomainName(path)).mkdir();
-		
 		try (BufferedReader br = new BufferedReader(new FileReader(getFileName(path)))) {
 
 			String line;
 			while ((line = br.readLine()) != null) {
 
-				BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME + getDomainName(path) + "/" + getDomainName(line) + ".txt", true));
+				BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME + getDomainName(path) + "-textProcessing", true));
 				System.out.println(line+"\nCreating files...");
 				URL url = new URL(line);
 				InputStream in = url.openStream();

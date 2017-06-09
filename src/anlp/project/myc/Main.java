@@ -1,19 +1,25 @@
 package anlp.project.myc;
 
 public class Main {
-	
-	private static final String url = "http://www.izu.edu.tr/";
+
+	private static final String URL = "https://dahianlamindakide.ayriyazilir.com/"; /*http://www.izu.edu.tr/*/
+	private static final String SEARCH = "ünlü Olan kelimeler";
 
 	public static void main(String[] args) throws Exception{
-		
+
 		WebCrawler crawler = new WebCrawler();
-		crawler.Crawling(url);
-		
+		crawler.Crawling(URL);
+
 		TextProcessing tProcessing = new TextProcessing();
-		tProcessing.textProcessing(url);
-		
+		tProcessing.textProcessing(URL);
+
 		Indexing indexing = new Indexing();
-		indexing.textIndexing(url);
+		indexing.textIndexing(URL);
+
+		InformationRetrieval retrieval = new InformationRetrieval();
+
+		Summarization summarization = new Summarization();
+		summarization.getSummary(retrieval.iRetrieval(SEARCH));
 
 	}
 
