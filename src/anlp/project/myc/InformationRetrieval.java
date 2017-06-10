@@ -1,9 +1,8 @@
 package anlp.project.myc;
 
 /**
- * @author ${Mert Yilmaz CAKIR}
- *
- * ${Information Retrieval}
+ * @author  Mert Yilmaz Cakir
+ * @since   2017-06-10
  */
 
 import java.io.File;
@@ -23,13 +22,12 @@ public class InformationRetrieval {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		Map.Entry<String, Integer> maxEntry = null;
 		
-		WebRanker ranker = new WebRanker();
-		
 		QueryProcessor processor = new QueryProcessor();
 		String str[] = processor.getWordRoot(search);
 
 		final File folder = new File(FILENAME);
 		for (final File fileEntry : folder.listFiles()){
+			WebRanker ranker = new WebRanker();
 			if (fileEntry.getName().contains("-index")){
 				for (String subStr : str){
 					rankCount = ranker.getFindString(fileEntry, subStr);

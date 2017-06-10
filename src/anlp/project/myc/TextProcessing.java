@@ -1,9 +1,8 @@
 package anlp.project.myc;
 
 /**
- * @author ${Mert Yilmaz CAKIR}
- *
- * ${Text Processing}
+ * @author  Mert Yilmaz Cakir
+ * @since   2017-06-10
  */
 
 import org.jsoup.Jsoup;

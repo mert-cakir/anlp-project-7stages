@@ -1,9 +1,8 @@
 package anlp.project.myc;
 
 /**
- * @author ${Mert Yilmaz CAKIR}
- *
- * ${Summarization}
+ * @author  Mert Yilmaz Cakir
+ * @since   2017-06-10
  */
 
 import java.io.BufferedReader;

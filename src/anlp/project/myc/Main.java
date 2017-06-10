@@ -1,5 +1,10 @@
 package anlp.project.myc;
 
+/**
+ * @author  Mert Yilmaz Cakir
+ * @since   2017-06-10
+ */
+
 public class Main {
 
 	private static final String URL = "https://dahianlamindakide.ayriyazilir.com/"; /*http://www.izu.edu.tr/*/
