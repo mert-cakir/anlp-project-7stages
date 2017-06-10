@@ -18,18 +18,11 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.10.2</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.jena/jena-arq -->
-		<dependency>
-			<groupId>org.apache.jena</groupId>
-			<artifactId>jena-arq</artifactId>
-			<version>3.0.0</version>
-		</dependency>
 		<dependency>
 			<groupId>com.hrzafer</groupId>
 			<artifactId>resha-turkish-stemmer</artifactId>
 			<version>1.2.1</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
